@@ -21,5 +21,7 @@ app_name = "pokedex"
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('todos/', views.listar_todos, name="listar_todos")
+    path('todos/', views.listar_todos, name="listar_todos"),
+    #path('listar/', views.listar_completo, name="listar"),
+    #path('pokemon/<int:id>', views.pokemon, name="pokemon"),
 ]

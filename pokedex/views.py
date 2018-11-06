@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Pokemon
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def listar_todos(request):
@@ -18,3 +18,12 @@ def listar_todos(request):
         'pokemons': pokemons
     }
     return render(request, 'listar_todos.html', contexto)
+
+
+def listar_completo(request, id=None):
+    if request.method == "POST" and id != None:
+        pokemon = get_object_or_404(Pokemon, id=id)
+        contexto = {
+
+        }
+        return render(request, 'listar_completo.html', contexto)

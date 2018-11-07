@@ -4,6 +4,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
+
+
 def listar_todos(request):
     # todos os objetos do DB.
     pokemons_list = Pokemon.objects.all().order_by('-nome')
@@ -21,9 +23,18 @@ def listar_todos(request):
 
 
 def listar_completo(request, id=None):
-    if request.method == "POST" and id != None:
+    if request.method == "GET" and id != None:
         pokemon = get_object_or_404(Pokemon, id=id)
         contexto = {
-
+            'pokemon': pokemon
+        }
+        return render(request, 'pokemon_attr.html', contexto)
+    else:
+        pokemon_lista = Pokemon.objects.all().order_by('-nome')
+        paginator = Paginator(pokemon_lista, 3)
+        page = request.GET.get('page')
+        pokemon = paginator.get_page(page)
+        contexto = {
+            'pokemons': pokemon
         }
         return render(request, 'listar_completo.html', contexto)

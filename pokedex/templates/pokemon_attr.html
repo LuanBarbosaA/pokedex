@@ -1,0 +1,93 @@
+{% extends 'basico.html' %}
+    {% block conteudo %}
+        <div class="container">
+            <div>
+                <h1 class="nome">{{ pokemon.nome }}</h1>
+            </div>
+            <div class="row">
+                <div class="card-group cardzao col-sm">
+                    <div class="card cardizinho">
+                        <img class="card-img-top style-img" src="{{ pokemon.imagem.url }}" alt="Card image cap">
+                    </div>
+                </div>
+                <div class="attr-pokemon col-sm">
+                    <div class="card-azul-esquerda">
+                        <ul class="list-group ul-attr">
+                            <li class="list-group-item li-attr">
+                                <span>Vida :</span>
+                                <span>{{ pokemon.vida }}</span>
+                            </li>
+                            <li class="list-group-item li-attr">
+                                <span>Vida :</span>
+                                <span>{{ pokemon.vida }}</span>
+                            </li>
+                            <li class="list-group-item li-attr">
+                                <span>Ataque fisico :</span>
+                                <span>{{ pokemon.ataque_fisica }}</span>
+                            </li>
+                            <li class="list-group-item li-attr">
+                                <span>Defesa fisica :</span>
+                                <span>{{ pokemon.defesa_fisica }}</span>
+                            </li>
+                            <li class="list-group-item li-attr">
+                                <span>Ataque Especial :</span>
+                                <span>{{ pokemon.ataque_especial }}</span>
+                            </li>
+                            <li class="list-group-item li-attr">
+                                <span>Defesa Especial :</span>
+                                <span>{{ pokemon.defesa_especial }}</span>
+                            </li>
+                            <li class="list-group-item li-attr">
+                                <span>velocidade :</span>
+                                <span>{{ pokemon.velocidade }}</span>
+                            </li>
+                            <li class="list-group-item li-attr">
+                                <span>Peso :</span>
+                                <span>{{ pokemon.peso }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-azul-direita">
+                        <ul class="list-group ul-attr">
+                            <li class="list-group-item li-attr">
+                                <span>Evolução</span>
+                                <span>{{ pokemon.evolucao }}</span>
+                            </li>
+                    </div>
+                </div>
+            </div>
+            <h1 class="nome">Experiência</h1>
+            <div class="progress attr-exp">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{ pokemon.experiencia }}"
+                     style="width: {{ pokemon.experiencia }}%" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+        <h1 class="nome">Habilidade</h1>
+        <ul class="list-group">
+            {% for habilidade in pokemon.habilidades.all %}
+                <li class="list-group-item li-attr">
+                    <span>{{ habilidade.nome }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <h1 class="nome">Movimentos</h1>
+        <ul class="list-group">
+            {% for movimento in pokemon.movimentos.all %}
+                <li class="list-group-item li-attr">
+                    <span>{{ movimento.nome }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <h1 class="nome">Elementos</h1>
+        <ul class="list-group">
+            {% for elemento in pokemon.elementos.all %}
+                <li class="list-group-item li-attr">
+                    <span>{{ elemento.nome }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endblock %}

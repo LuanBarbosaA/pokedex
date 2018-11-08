@@ -33,31 +33,72 @@
             background-color: #fff;
             border: .05rem solid #fff;
         }
+        #primeiraDiv{
+            overflow: auto;
+        }
         .style-img{
             //position: fixed;
             height: 12%;
             width: 25%;
         }
         .nome{
-
+            position: relative;
+            display: flex;
+            justify-content: center
         }
         .cardzao .style-img{
-            height: 50%;
-            width: 50%;
+            height: 100%;
+            width: 100%;
         }
         .cardzao{
-            position: fixed;
+            border-radius: 10px;
             height: 50%;
-            width: 50%;
+            width: 35%;
             background-color: #fff;
         }
         .attr-pokemon{
             border-radius: 10px;
-            position: fixed;
-            height: 50%;
-            width: 45%;
-            left: 50%;
+            width: 35%;
             background-color: #30a7d7;
+        }
+        .cardizinho{
+            border-radius: 10px;
+        }
+        .card-azul-direita{
+            right: 50%;
+            width: 50%;
+            float: left;
+            border-radius: 10px;
+        }
+        .card-azul-esquerda{
+            left: 0%;
+            width: 50%;
+            float: left;
+            border-radius: 10px;
+        }
+        .ul-attr{
+            width: 100%;
+            border-radius: 10px;
+        }
+        .li-attr{
+            background-color: rgba(0, 0, 0, 0.3);
+            border: none;
+            border-radius: 10px;
+        }
+        .card-group>.card:only-child{
+            border-radius: 0;
+        }
+        .card-group>.card:last-child{
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        .card-group>.card:first-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
         /*
          * Base structure
@@ -149,12 +190,12 @@
 
 <body>
 
-<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+<div id="primeiraDiv" class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="masthead ">
         <div class="inner">
             <h3 class="masthead-brand">POKEDEX</h3>
             <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link active" href="{% url 'pokedex:listar_todos' %}">Todos</a>
+                <a class="nav-link active" href="{% url 'pokedex:listar' %}">Todos</a>
                 <a class="nav-link" href="#">Top 6</a>
             </nav>
         </div>
@@ -164,6 +205,8 @@
         {% block conteudo %}
         {% endblock conteudo %}
     </main>
+        {% block fora-main %}
+        {% endblock %}
 
     <footer class="mastfoot mt-auto">
         {% block rodape %}

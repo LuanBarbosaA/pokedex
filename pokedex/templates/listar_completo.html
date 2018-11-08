@@ -1,0 +1,21 @@
+{% extends 'basico.html' %}
+    {% block conteudo %}
+        <ul class="list-group">
+            {% for pokemon in pokemons %}
+            <a href="{% url 'pokedex:pokemon' pokemon.id %}">
+                <li class="list-group-item">
+                    <div class="card-group">
+                        <div class="card text-muted">
+                            <img class="card-img-top style-img" src="{{ pokemon.imagem.url }}" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h3>{{ pokemon.nome }}</h3>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+        <button class="btn btn-success">Pagina Anterior</button>
+        <button class="btn btn-success">Proxima pagina</button>
+    {% endblock %}

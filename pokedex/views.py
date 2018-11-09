@@ -31,7 +31,7 @@ def listar_completo(request, id=None):
         return render(request, 'pokemon_attr.html', contexto)
     else:
         pokemon_lista = Pokemon.objects.all().order_by('-nome')
-        paginator = Paginator(pokemon_lista, 3)
+        paginator = Paginator(pokemon_lista, 6)
         page = request.GET.get('page')
         pokemon = paginator.get_page(page)
         contexto = {

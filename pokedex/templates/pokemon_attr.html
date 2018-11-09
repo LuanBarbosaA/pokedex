@@ -2,7 +2,7 @@
     {% block conteudo %}
         <div class="container">
             <div>
-                <h1 class="nome">{{ pokemon.nome }}</h1>
+                <h1 id="nomePokemon" class="nome">{{ pokemon.nome }}</h1>
             </div>
             <div class="row">
                 <div class="card-group cardzao col-sm">
@@ -50,23 +50,26 @@
                     <div class="card-azul-direita">
                         <ul class="list-group ul-attr">
                             <li class="list-group-item li-attr">
-                                <span>Evolução</span>
-                                <span>{{ pokemon.evolucao }}</span>
+                                <span>Evolução: </span>
+                                {% if pokemon.evolucao == None %}
+                                    <span>Sem evolução</span>
+                                    {% else %}
+                                        <span>{{ pokemon.evolucao }}</span>
+                                {% endif %}
+
                             </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <h1 class="nome">Experiência</h1>
+            <h1 class="nome">Experiência: {{pokemon.experiencia}} | 100</h1>
             <div class="progress attr-exp">
                 <div class="progress-bar" role="progressbar" aria-valuenow="{{ pokemon.experiencia }}"
                      style="width: {{ pokemon.experiencia }}%" aria-valuemin="0" aria-valuemax="100">
                 </div>
             </div>
         </div>
-        <div>
-
-        </div>
-        <h1 class="nome">Habilidade</h1>
+        <h1 class="nome">Habilidades</h1>
         <ul class="list-group">
             {% for habilidade in pokemon.habilidades.all %}
                 <li class="list-group-item li-attr">

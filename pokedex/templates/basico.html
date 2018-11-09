@@ -33,18 +33,44 @@
             background-color: #fff;
             border: .05rem solid #fff;
         }
-        #primeiraDiv{
-            overflow: auto;
+        a:hover{
+            text-decoration: none;
+        }
+        #nomePokemon{
+            justify-content: center;
+        }
+        #divImgPokemon{
+            max-width: 20%;
+            max-height: 40%;
+        }
+        #divBtn{
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        .max-height-100{
+            height: 100%;
+        }
+        .lista-pokemon{
+            height: 25%;
         }
         .style-img{
             //position: fixed;
-            height: 12%;
-            width: 25%;
+            height: 100%;
+            width: 100%;
+            object-fit: scale-down;
+        }
+        .div-height-100{
+            width: 40%;
+        }
+        .card-body h2{
+            color: #141617;
         }
         .nome{
+            margin-top: 5%;
             position: relative;
             display: flex;
-            justify-content: center
+            //justify-content: center
         }
         .cardzao .style-img{
             height: 100%;
@@ -52,7 +78,7 @@
         }
         .cardzao{
             border-radius: 10px;
-            height: 50%;
+            height: 45%;
             width: 35%;
             background-color: #fff;
         }
@@ -85,6 +111,9 @@
             border: none;
             border-radius: 10px;
         }
+        .card {
+            border: none;
+        }
         .card-group>.card:only-child{
             border-radius: 0;
         }
@@ -115,7 +144,7 @@
             display: flex;
             color: #fff;
             text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-            box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+            box-shadow: none;
         }
 
         .cover-container {
@@ -200,23 +229,10 @@
             </nav>
         </div>
     </header>
-
     <main role="main" class="inner cover">
         {% block conteudo %}
         {% endblock conteudo %}
     </main>
-        {% block fora-main %}
-        {% endblock %}
-
-    <footer class="mastfoot mt-auto">
-        {% block rodape %}
-
-{#            <div class="inner">#}
-            {#                <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a#}
-            {#                        href="https://twitter.com/mdo">@mdo</a>.</p>#}
-            {#            </div>#}
-        {% endblock rodape %}
-    </footer>
 </div>
 <!-- Bootstrap core JavaScript
 ================================================== -->

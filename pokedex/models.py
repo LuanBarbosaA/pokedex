@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator
 
 
 # Create your models here.
@@ -34,7 +35,7 @@ class Pokemon(models.Model):
     defesa_especial = models.PositiveIntegerField()
     vida = models.PositiveIntegerField()
     velocidade = models.PositiveIntegerField()
-    experiencia = models.PositiveIntegerField()
+    experiencia = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
     peso = models.PositiveIntegerField()
     habilidades = models.ManyToManyField(Habilidade)
     movimentos = models.ManyToManyField(Movimento)

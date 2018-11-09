@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Pokemon
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404
+import pdb
 
 # Create your views here.
 
@@ -28,11 +29,18 @@ def listar_completo(request, id=None):
         contexto = {
             'pokemon': pokemon
         }
+        '''for movimento in pokemon.movimentos.all():
+            print(movimento)
+        pdb.set_trace()'''
         return render(request, 'pokemon_attr.html', contexto)
     else:
         pokemon_lista = Pokemon.objects.all().order_by('-nome')
+
+        # quantidade de paginas
         paginator = Paginator(pokemon_lista, 6)
+        # qual a pagina desejada que ele quer IR
         page = request.GET.get('page')
+        # pagina atual
         pokemon = paginator.get_page(page)
         contexto = {
             'pokemons': pokemon

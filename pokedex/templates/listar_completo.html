@@ -3,7 +3,7 @@
         <div class="max-height-100">
             <ul class="list-group">
                 {% for pokemon in pokemons %}
-                    <a href="{% url 'pokedex:pokemon' pokemon.id %}">
+                    <a href="{% url 'pokedex:pokemon' pokemon.id %}" class="mb-2">
                         <li class="list-group-item lista-pokemon">
                             <div class="row">
                             <div class="card-group div-height-100">

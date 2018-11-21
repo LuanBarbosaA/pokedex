@@ -23,7 +23,14 @@ def listar_todos(request):
     return render(request, 'listar_todos.html', contexto)
 
 
-def listar_completo(request, id=None):
+def listar_completo(request, id=None, top=None):
+    if top == 1 and id==None and request.method == "GET":
+        pokemon_top = Pokemon.objects.all().order_by('-ataque_fisica')
+        #pdb.set_trace()
+        contexto = {
+            "pokemonTop": pokemon_top
+        }
+        return render(request, 'listar_completo.html', contexto)
     if request.method == "GET" and id != None:
         pokemon = get_object_or_404(Pokemon, id=id)
         contexto = {

@@ -231,7 +231,7 @@
             <h3 class="masthead-brand">POKEDEX</h3>
             <nav class="nav nav-masthead justify-content-center">
                 <a class="nav-link active" href="{% url 'pokedex:listar' %}">Todos</a>
-                <a class="nav-link" href="#">Top 6</a>
+                <a class="nav-link" href="{% url 'pokedex:pokemonTop' 1 %}">Top 6</a>
             </nav>
         </div>
     </header>

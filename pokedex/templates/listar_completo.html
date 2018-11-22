@@ -2,22 +2,60 @@
     {% block conteudo %}
         <div class="max-height-100">
             <ul class="list-group">
-                {% for pokemon in pokemons %}
-                    <a href="{% url 'pokedex:pokemon' pokemon.id %}" class="mb-2">
-                        <li class="list-group-item lista-pokemon">
-                            <div class="row">
-                            <div class="card-group div-height-100">
-                                <div class="card text-muted div-pokemon">
-                                    <img class="card-img-top style-img" src="{{ pokemon.imagem.url }}" alt="Card image cap">
+                {% if pokemons %}
+                    {% for pokemon in pokemons %}
+                        <a href="{% url 'pokedex:pokemon' pokemon.id %}" class="mb-2">
+                            <li class="list-group-item lista-pokemon">
+                                <div class="row">
+                                <div class="card-group div-height-100">
+                                    <div class="card text-muted div-pokemon">
+                                        <img class="card-img-top style-img" src="{{ pokemon.imagem.url }}" alt="Card image cap">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body nome-pokemon">
-                                <h2 class="nome-pokemon">{{ pokemon.nome }}</h2>
-                            </div>
+                                <div class="card-body nome-pokemon">
+                                    <h2 class="nome-pokemon">{{ pokemon.nome }}</h2>
                                 </div>
-                        </li>
-                    </a>
-                {% endfor %}
+                                    </div>
+                            </li>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+                {% if pokemonTops %}
+                    {% for pokemonTop in pokemonTops %}
+                        <a href="{% url 'pokedex:pokemon' pokemonTop.id %}" class="mb-2">
+                            <li class="list-group-item lista-pokemon">
+                                <div class="row">
+                                <div class="card-group div-height-100">
+                                    <div class="card text-muted div-pokemon">
+                                        <img class="card-img-top style-img" src="{{ pokemonTop.imagem.url }}" alt="Card image cap">
+                                    </div>
+                                </div>
+                                <div class="card-body nome-pokemon">
+                                    <h2 class="nome-pokemon">{{ pokemonTop.nome }}</h2>
+                                </div>
+                                    </div>
+                            </li>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+                {% if pokemonTopAttrs %}
+                    {% for pokemonTopAttr in pokemonTopAttrs %}
+                        <a href="{% url 'pokedex:pokemon' pokemonTopAttr.id %}" class="mb-2">
+                            <li class="list-group-item lista-pokemon">
+                                <div class="row">
+                                <div class="card-group div-height-100">
+                                    <div class="card text-muted div-pokemon">
+                                        <img class="card-img-top style-img" src="{{ pokemonTopAttr.imagem.url }}" alt="Card image cap">
+                                    </div>
+                                </div>
+                                <div class="card-body nome-pokemon">
+                                    <h2 class="nome-pokemon">{{ pokemonTopAttr.nome }}</h2>
+                                </div>
+                                    </div>
+                            </li>
+                        </a>
+                    {% endfor %}
+                {% endif %}
             </ul>
             <div id="divBtn">
                 {% if pokemons.has_previous %}

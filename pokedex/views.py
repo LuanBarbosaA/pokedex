@@ -2,9 +2,8 @@ from django.shortcuts import render
 from .models import Pokemon
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404
+from django.db.models import F
 import pdb
-
-# Create your views here.
 
 
 def listar_todos(request):
@@ -23,15 +22,15 @@ def listar_todos(request):
     return render(request, 'listar_todos.html', contexto)
 
 
-def listar_completo(request, id=None, top=None):
-    if top == 1 and id==None and request.method == "GET":
-        pokemon_top = Pokemon.objects.all().order_by('-ataque_fisica')
+def listar_completo(request, id=None, top=None, top2=None):
+    if top == "top" and id==None and request.method == "GET":
         #pdb.set_trace()
+        pokemon_top = Pokemon.objects.all().order_by("-ataque_fisica")
         contexto = {
-            "pokemonTop": pokemon_top
+            "pokemonTops": pokemon_top
         }
         return render(request, 'listar_completo.html', contexto)
-    if request.method == "GET" and id != None:
+    elif request.method == "GET" and id != None:
         pokemon = get_object_or_404(Pokemon, id=id)
         contexto = {
             'pokemon': pokemon
@@ -42,14 +41,20 @@ def listar_completo(request, id=None, top=None):
         return render(request, 'pokemon_attr.html', contexto)
     else:
         pokemon_lista = Pokemon.objects.all().order_by('-nome')
-
-        # quantidade de paginas
         paginator = Paginator(pokemon_lista, 6)
-        # qual a pagina desejada que ele quer IR
         page = request.GET.get('page')
-        # pagina atual
         pokemon = paginator.get_page(page)
         contexto = {
             'pokemons': pokemon
+        }
+        return render(request, 'listar_completo.html', contexto)
+
+
+def listar_top_attr(request, top2=None):
+    if top2 == "True" and id == None and request.method == "GET":
+        pdb.set_trace()
+        pokemon_top_attr = Pokemon.objects.annotate(total=F("ataque_fisica") + F("defesa_fisica")).order_by("-total")
+        contexto = {
+            "pokemonTopAttrs": pokemon_top_attr
         }
         return render(request, 'listar_completo.html', contexto)

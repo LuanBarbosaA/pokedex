@@ -23,6 +23,7 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('todos/', views.listar_todos, name="listar_todos"),
     path('listar/', views.listar_completo, name="listar"),
+    path('listar/<str:top>', views.listar_completo, name="pokemonTop"),
+    path('listar/<str:top2>', views.listar_top_attr, name="pokemonTopAttr"),
     path('pokemon/<int:id>', views.listar_completo, name="pokemon"),
-    path('listar/<int:top>', views.listar_completo, name="pokemonTop"),
 ]

@@ -1,0 +1,38 @@
+{% extends 'basico.html' %}
+{% block conteudo %}
+{% for pokemon in pokemons %}
+<li class="list-group-item lista-pokemon" onclick="batalhaPokemon({{pokemon.id}})">
+    <div class="row">
+        <div class="card-group div-height-100">
+            <div class="card text-muted div-pokemon">
+                <img class="card-img-top style-img" src="{{ pokemon.imagem.url }}" alt="Card image cap">
+            </div>
+        </div>
+        <div class="card-body nome-pokemon">
+            <h2 class="nome-pokemon">{{ pokemon.nome }}</h2>
+        </div>
+    </div>
+</li>
+{% endfor %}
+{% endblock %}
+{% block script %}
+<script>
+            localStorage.removeItem("pokemon_um");
+            localStorage.removeItem("pokemon_dois");
+            function batalhaPokemon(id){
+                if(!localStorage.getItem("pokemon_um")){
+                    localStorage.setItem("pokemon_um", id)
+                }else{
+                    localStorage.setItem("pokemon_dois", id)
+                        $.post( "http://127.0.0.1:8000/pokedex/resultado_batalha", { pokemon_um: localStorage.getItem("pokemon_um"), pokemon_dois: localStorage.getItem("pokemon_dois") })
+                          .done(function( data ) {
+                            console.log( "Data Loaded: " + data );
+                        });
+                }
+            }
+
+
+
+
+</script>
+{% endblock %}

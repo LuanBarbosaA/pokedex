@@ -22,12 +22,23 @@ def listar_todos(request):
     return render(request, 'listar_todos.html', contexto)
 
 
-def listar_completo(request, id=None, top=None, top2=None):
-    if top == "top" and id==None and request.method == "GET":
-        #pdb.set_trace()
-        pokemon_top = Pokemon.objects.all().order_by("-ataque_fisica")
+def listar_completo(request, id=None, top=None):
+    if top == 1 and id==None and request.method == "GET":
+        pokemon = Pokemon.objects.all().order_by("-ataque_fisica")
+        paginator = Paginator(pokemon, 6)
+        page = request.GET.get('page')
+        pokemon_top = paginator.get_page(page)
         contexto = {
             "pokemonTops": pokemon_top
+        }
+        return render(request, 'listar_completo.html', contexto)
+    elif top == 2 and id == None and request.method == "GET":
+        pokemon = Pokemon.objects.annotate(total=F("ataque_fisica") + F("defesa_fisica") + F("ataque_especial") + F("defesa_especial") + F("vida") + F("velocidade") + F("experiencia") + F("peso") + F("habilidades")).order_by("-total")
+        paginator = Paginator(pokemon, 6)
+        page = request.GET.get('page')
+        pokemon_top_attr = paginator.get_page(page)
+        contexto = {
+            "pokemonTopAttrs": pokemon_top_attr
         }
         return render(request, 'listar_completo.html', contexto)
     elif request.method == "GET" and id != None:
@@ -40,21 +51,11 @@ def listar_completo(request, id=None, top=None, top2=None):
         pdb.set_trace()'''
         return render(request, 'pokemon_attr.html', contexto)
     else:
-        pokemon_lista = Pokemon.objects.all().order_by('-nome')
+        pokemon_lista = Pokemon.objects.all().order_by('-nome').reverse()
         paginator = Paginator(pokemon_lista, 6)
         page = request.GET.get('page')
         pokemon = paginator.get_page(page)
         contexto = {
             'pokemons': pokemon
-        }
-        return render(request, 'listar_completo.html', contexto)
-
-
-def listar_top_attr(request, top2=None):
-    if top2 == "True" and id == None and request.method == "GET":
-        pdb.set_trace()
-        pokemon_top_attr = Pokemon.objects.annotate(total=F("ataque_fisica") + F("defesa_fisica")).order_by("-total")
-        contexto = {
-            "pokemonTopAttrs": pokemon_top_attr
         }
         return render(request, 'listar_completo.html', contexto)

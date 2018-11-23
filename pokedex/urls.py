@@ -25,4 +25,6 @@ urlpatterns = [
     path('listar/', views.listar_completo, name="listar"),
     path('listar/<int:top>', views.listar_completo, name="pokemonTop"),
     path('pokemon/<int:id>', views.listar_completo, name="pokemon"),
+    path('batalhar/', views.batalhar, name="batalhar"),
+    path('resultado_batalha', views.resultado_batalha, name="resultado_batalha"),
 ]

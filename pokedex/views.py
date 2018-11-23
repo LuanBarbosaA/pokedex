@@ -4,6 +4,9 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404
 from django.db.models import F
 import pdb
+from django.views.decorators.csrf import csrf_exempt
+import json
+
 
 
 def listar_todos(request):
@@ -32,11 +35,12 @@ def listar_completo(request, id=None, top=None):
             "pokemonTops": pokemon_top
         }
         return render(request, 'listar_completo.html', contexto)
-    elif top == 2 and id == None and request.method == "GET":
-        pokemon = Pokemon.objects.annotate(total=F("ataque_fisica") + F("defesa_fisica") + F("ataque_especial") + F("defesa_especial") + F("vida") + F("velocidade") + F("experiencia") + F("peso") + F("habilidades")).order_by("-total")
+    elif top == 2 and id==None and request.method == "GET":
+        pokemon = Pokemon.objects.annotate(total=F("ataque_fisica")+F("defesa_fisica")+F("ataque_especial")+F("defesa_especial")+F("vida")+F("velocidade")+F("experiencia")).order_by("-total")
         paginator = Paginator(pokemon, 6)
         page = request.GET.get('page')
         pokemon_top_attr = paginator.get_page(page)
+        #pdb.set_trace()
         contexto = {
             "pokemonTopAttrs": pokemon_top_attr
         }
@@ -59,3 +63,17 @@ def listar_completo(request, id=None, top=None):
             'pokemons': pokemon
         }
         return render(request, 'listar_completo.html', contexto)
+
+
+def batalhar(request, idPokemon1=None, idPokemon2=None):
+    pokemon_lista = Pokemon.objects.all().reverse()
+    contexto = {
+        "pokemons": pokemon_lista
+    }
+    return render(request, 'batalha.html', contexto)
+
+
+@csrf_exempt
+def resultado_batalha(request):
+
+    return "ok"

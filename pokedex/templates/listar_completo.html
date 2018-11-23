@@ -7,15 +7,15 @@
                         <a href="{% url 'pokedex:pokemon' pokemon.id %}" class="mb-2">
                             <li class="list-group-item lista-pokemon">
                                 <div class="row">
-                                <div class="card-group div-height-100">
-                                    <div class="card text-muted div-pokemon">
-                                        <img class="card-img-top style-img" src="{{ pokemon.imagem.url }}" alt="Card image cap">
+                                    <div class="card-group div-height-100">
+                                        <div class="card text-muted div-pokemon">
+                                            <img class="card-img-top style-img" src="{{ pokemon.imagem.url }}" alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <div class="card-body nome-pokemon">
+                                        <h2 class="nome-pokemon">{{ pokemon.nome }}</h2>
                                     </div>
                                 </div>
-                                <div class="card-body nome-pokemon">
-                                    <h2 class="nome-pokemon">{{ pokemon.nome }}</h2>
-                                </div>
-                                    </div>
                             </li>
                         </a>
                     {% endfor %}
@@ -25,15 +25,15 @@
                         <a href="{% url 'pokedex:pokemon' pokemonTop.id %}" class="mb-2">
                             <li class="list-group-item lista-pokemon">
                                 <div class="row">
-                                <div class="card-group div-height-100">
-                                    <div class="card text-muted div-pokemon">
-                                        <img class="card-img-top style-img" src="{{ pokemonTop.imagem.url }}" alt="Card image cap">
+                                    <div class="card-group div-height-100">
+                                        <div class="card text-muted div-pokemon">
+                                            <img class="card-img-top style-img" src="{{ pokemonTop.imagem.url }}" alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <div class="card-body nome-pokemon">
+                                        <h2 class="nome-pokemon">{{ pokemonTop.nome }}</h2>
                                     </div>
                                 </div>
-                                <div class="card-body nome-pokemon">
-                                    <h2 class="nome-pokemon">{{ pokemonTop.nome }}</h2>
-                                </div>
-                                    </div>
                             </li>
                         </a>
                     {% endfor %}
@@ -43,15 +43,16 @@
                         <a href="{% url 'pokedex:pokemon' pokemonTopAttr.id %}" class="mb-2">
                             <li class="list-group-item lista-pokemon">
                                 <div class="row">
-                                <div class="card-group div-height-100">
-                                    <div class="card text-muted div-pokemon">
-                                        <img class="card-img-top style-img" src="{{ pokemonTopAttr.imagem.url }}" alt="Card image cap">
+                                    <div class="card-group div-height-100">
+                                        <div class="card text-muted div-pokemon">
+                                            <img class="card-img-top style-img" src="{{ pokemonTopAttr.imagem.url }}" alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <div class="card-body nome-pokemon">
+                                        <h2>{{pokemonTopAttr.nome}}</h2>
+                                        <h2>Toltal de dos atributos: {{pokemonTopAttr.total}}</h2>
                                     </div>
                                 </div>
-                                <div class="card-body nome-pokemon">
-                                    <h2 class="nome-pokemon">{{ pokemonTopAttr.nome }}</h2>
-                                </div>
-                                    </div>
                             </li>
                         </a>
                     {% endfor %}

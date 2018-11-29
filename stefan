@@ -1,0 +1,12 @@
+if request.method == "POST" and id != None:
+        preco = get_object_or_404(Preco, id=id)
+        produto = get_object_or_404(Produto, id=preco.fk_produto.id)
+        categoria = get_object_or_404(Categoria, id=preco.fk_produto.fk_categoria.id)
+        formPreco = CadastrarProdutoPrecoForm(request.POST or None, instance=preco)
+        formCategoria = CadastrarProdutoPrecoForm(request.POST, instance=categoria)
+        formProduto = CadastrarProdutoPrecoForm(request.POST, instance=produto)
+        if formPreco.is_valid() and formCategoria.is_valid() and formProduto.is_valid():
+            formPreco.save()
+            formCategoria.save()
+            formProduto.save()
+        return redirect('cadastrar_produto')
